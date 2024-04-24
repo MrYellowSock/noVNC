@@ -84,12 +84,18 @@ export default class Keyboard {
         return 'Unidentified';
     }
 
-    _handleKeyDown(e) {
+    async _handleKeyDown(e) {
         const code = this._getKeyCode(e);
         let keysym = KeyboardUtil.getKeysym(e);
         let numlock = e.getModifierState('NumLock');
         let capslock = e.getModifierState('CapsLock');
 
+		console.log(code, this._keyDownList)
+		// Check if both Ctrl and V keys are released
+		if (code === 'KeyV' && ('ControlLeft' in this._keyDownList)) {
+			console.log("Ctrl+V");
+			await window.mypaste();
+		}
         // getModifierState for NumLock is not supported on mac and ios and always returns false.
         // Set to null to indicate unknown/unsupported instead.
         if (browser.isMac() || browser.isIOS()) {

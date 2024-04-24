@@ -337,6 +337,15 @@ const UI = {
             .addEventListener('click', UI.toggleClipboardPanel);
         document.getElementById("noVNC_clipboard_text")
             .addEventListener('change', UI.clipboardSend);
+		window.mypaste = async () => {
+			if (document.hasFocus()) {
+				let paste = await navigator.clipboard.readText()
+				let elem = document.getElementById('noVNC_clipboard_text');
+				elem.value = paste;
+				console.log("Pasted: " + paste);
+				UI.clipboardSend();
+			}
+		}
     },
 
     // Add a call to save settings when the element changes,
@@ -973,6 +982,11 @@ const UI = {
     clipboardReceive(e) {
         Log.Debug(">> UI.clipboardReceive: " + e.detail.text.substr(0, 40) + "...");
         document.getElementById('noVNC_clipboard_text').value = e.detail.text;
+		if(document.hasFocus())
+		{
+			Log.Debug("Writing clipboard")
+			navigator.clipboard.writeText(e.detail.text);
+		}
         Log.Debug("<< UI.clipboardReceive");
     },
 
