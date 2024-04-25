@@ -1,3 +1,7 @@
+### Clipboard sync notes
+- Tested on : google chrome v123.
+- chrome will deny clipboard permission on insecure non-localhost url.
+
 ## noVNC: HTML VNC Client Library and Application
 
 [![Test Status](https://github.com/novnc/noVNC/workflows/Test/badge.svg)](https://github.com/novnc/noVNC/actions?query=workflow%3ATest)
