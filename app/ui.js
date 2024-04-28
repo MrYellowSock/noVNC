@@ -1053,7 +1053,7 @@ const UI = {
         if (port) {
             url += ':' + port;
         }
-        url += '/' + path;
+        url += './' + path;
 
         try {
             UI.rfb = new RFB(document.getElementById('noVNC_container'), url,
