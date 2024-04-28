@@ -1053,7 +1053,8 @@ const UI = {
         if (port) {
             url += ':' + port;
         }
-        url += './' + path;
+		let newUrl = new URL(`./${path}`, document.location)
+        url += newUrl.pathname
 
         try {
             UI.rfb = new RFB(document.getElementById('noVNC_container'), url,
